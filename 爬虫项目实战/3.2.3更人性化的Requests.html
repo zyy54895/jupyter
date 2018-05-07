@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3.2.3更人性化的Requests</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>3.2.3更人性化的Requests</h1>
+	<p>Python中Requests实现HTTP请求的方式,也是在Python爬虫开发中最为常用的方式</p>
+	<div class="1">
+		<h2>1.首先还是实现一个完整的请求与相应模型</h2>
+		<p>以GET请求为例,最简单的形式如下:</p>
+		<xmp>
+		import requests
+		r = requests.get('http://www.baidu.com')
+		print(r.content)
+		</xmp>
+		<p>POST请求:</p>
+		<xmp>
+		import requests
+		postdata = {'key':'value'}
+		r = requests.post('http://www.xxxxxx.com/login', data=postdata)
+		print(r.content)
+		</xmp>
+		<p>HTTP中的其它请求方式也可以用Requests来实现,示例如下:</p>
+		<ul>
+			<li>r = requests.put('http://www.xxxxxx.com/put', data={'key':'value'}) </li>
+			<li>r = requests.delete('http://www.xxxxxx.com/delete') </li>
+			<li>r = requests.head('http://www.xxxxxx.com/get') </li>
+			<li>r = requests.options('http://www.xxxxxx.com/get') </li>
+		</ul>
+		<p>接着讲解一下稍微复杂的方式,大家肯定见过类似这样的URL:http://zzk.cnblogs.com/s/blogpost?Keywords=blog:qiyeboy&pageindex=1,Requests提供了其它方式,示例如下:</p>
+		<xmp>
+		import requests
+		payload = {'keywords':'blog:qiyeboy', 'pageindex': 1}
+		r = requests.get('http://zk.cnblogs.com/s/blogpost', params=payload)
+		print(r.url)
+		</xmp>
+		<p>最终结果为:http://zzk.cnblogs.com/s/blogpost?Keywords=blog:qiyeboy&pageindex=1</p>
+	</div>
+	<hr>
+	<div class="2">
+		<h2>2.响应与编码</h2>
+		<p>示例如下:</p>
+		<xmp>
+		import requests
+		r = requests.get('http://www.baidu.com')	
+		print('content--->'+r.content)
+		print('text-->'+r.text)
+		print('encoding-->'+r.encoding)
+		r.encoding='utf-8'
+		print('new text-->'+r.text)
+		</xmp>
+	</div>
+</body>
+</html>
